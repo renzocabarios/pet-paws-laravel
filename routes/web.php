@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/signin', function () {
-    return view('user.signin');
-});
+Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
+Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
 
 Route::get('/signup', function () {
     return view('user.signup');
