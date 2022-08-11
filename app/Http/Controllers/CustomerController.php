@@ -8,9 +8,33 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Customer;
 use App\Event\CustomerCreated;
+use Yajra\Datatables\Datatables;
 
 class CustomerController extends Controller
 {
+
+    public function get()
+    {
+        $customers = Customer::with(['user'])->get();
+        return Datatables::of($customers)
+            ->addIndexColumn()
+            ->addColumn('status', function ($row) {
+                return $row->user->active ? "Active" : "Inactive";
+            })
+            ->addColumn('img', function ($row) {
+                $url = asset('images/customer/' . $row->img_path);
+                $img = '<img src=' . $url . ' alt = "I am a pic" height="50" width="50">';;
+                return $img;
+            })
+            ->addColumn('action', function ($row) {
+                $btn = "<a href=" . route('customer.deactivate', ['id' => $row->user_id]) . ">Deactivate</a>";
+                $btn = $btn . "<a href=" . route('customer.activate', ['id' => $row->user_id]) . ">Activate</a>";
+                return $btn;
+            })
+            ->rawColumns(['status', 'img', 'action'])
+            ->make(true);
+    }
+
     public function store(Request $request)
     {
         try {
@@ -61,10 +85,18 @@ class CustomerController extends Controller
         return redirect('/customer');
     }
 
-    public function delete($id)
+    public function deactivate($id)
     {
         $customer = User::find($id);
-        $customer->active = !$customer->active;
+        $customer->active = false;
+        $customer->save();
+        return redirect('/customer');
+    }
+
+    public function activate($id)
+    {
+        $customer = User::find($id);
+        $customer->active = true;
         $customer->save();
         return redirect('/customer');
     }

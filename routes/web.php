@@ -34,3 +34,8 @@ Route::get('/json/service', [ServiceController::class, 'get'])->name('service.da
 Route::post('/service/store', [ServiceController::class, 'store'])->name('service.store');
 Route::post('/service/update/{id}', [ServiceController::class, 'update'])->name('service.update');
 Route::get('/service/delete/{id}', [ServiceController::class, 'destroy'])->name('service.delete');
+
+Route::get('/customer', [ViewController::class, 'customer'])->name('customer');
+Route::get('/json/customer', [CustomerController::class, 'get'])->name('customer.data');
+Route::get('/customer/deactivate/{id}', [CustomerController::class, 'deactivate'])->name('customer.deactivate');
+Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->name('customer.activate');

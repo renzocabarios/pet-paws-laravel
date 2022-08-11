@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("role");
             $table->string("img_path");
             $table->rememberToken();
+            $table->boolean("active");
             $table->timestamps();
         });
     }

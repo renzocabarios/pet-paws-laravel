@@ -31,4 +31,9 @@ class ViewController extends Controller
     {
         return view('user.signup');
     }
+
+    public function customer()
+    {
+        return view('customer.index');
+    }
 }

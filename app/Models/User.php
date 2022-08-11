@@ -18,7 +18,8 @@ class User extends Authenticatable
         'role',
         'email',
         'password',
-        'img_path'
+        'img_path',
+        'active'
     ];
 
     protected $hidden = [
@@ -29,6 +30,7 @@ class User extends Authenticatable
     protected $attributes = [
         'role' => 'Customer',
         'img_path' => 'asd.jpg',
+        'active' => true
     ];
 
     public function customer()
