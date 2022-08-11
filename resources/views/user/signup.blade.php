@@ -5,7 +5,7 @@
 
     <div class="flex flex-col items-center shadow-lg shadow-gray-900 bg-white rounded-md p-12">
         <p class="text-xl font-black">Create An Account</p>
-        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="#" enctype="multipart/form-data">
+        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="{{route('customer.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col">
                 <label for="first_name">First Name</label>

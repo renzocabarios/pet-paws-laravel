@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::get('/', function () {
 
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
+Route::post('/signup', [CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/service', [ViewController::class, 'service'])->name('service');
 Route::get('/service/add', [ViewController::class, 'addService'])->name('service.add');
