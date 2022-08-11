@@ -11,7 +11,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="h-screen" style="background-image: url(/assets/background-try.jpg); background-size:cover; background-repeat: repeat-y"> 
+<body class="h-screen">
     <nav class="nav drop-shadow-2xl bg-sky-300 flex flex-row justify-between items-center p-5">
         <div class="text-3xl">Pet <span class="text-white">Paws</span> </div>
         {{-- <img src="/assets/logo-paw.png" alt="Italian Trulli"> --}}

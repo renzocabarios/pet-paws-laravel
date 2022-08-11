@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<div class="h-full w-full flex justify-center items-center">
+<div class="h-full w-full flex justify-center items-center " style="background-image: url(/assets/background-try.jpg); background-size:cover; background-repeat: repeat-y">
 
     <div class="flex flex-col items-center shadow-lg shadow-gray-900 bg-white rounded-md p-12">
         <p class="text-xl font-black">Create An Account</p>
@@ -32,7 +32,7 @@
                         <p class="mb-2 text-sm dark"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                         <p class="text-xs dark">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                     </div>
-                    <input id="img_path" name="img_path" type="file" class="hidden" />
+                    <input id="dropzone-file" name="img_path" type="file" class="hidden" />
                 </label>
             </div>
             <br>
