@@ -28,4 +28,9 @@ class Pet extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
 }
