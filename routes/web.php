@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
+Route::post('/signin', [UserController::class, 'authUser'])->name('user.auth');
 Route::post('/signup', [CustomerController::class, 'store'])->name('customer.store');
 
 Route::get('/service', [ViewController::class, 'service'])->name('service');

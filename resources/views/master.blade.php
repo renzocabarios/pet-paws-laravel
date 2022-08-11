@@ -14,13 +14,13 @@
 <body class="h-screen">
     <nav class="nav drop-shadow-2xl bg-sky-300 flex flex-row justify-between items-center p-5">
         <div class="text-3xl">Pet <span class="text-white">Paws</span> </div>
-        {{-- <img src="/assets/logo-paw.png" alt="Italian Trulli"> --}}
         <div class="flex flex-row justify-between items-center gap-5">
             <a class="text-sm text-white" href="#">HOME</a>
             <a class="text-sm text-white" href="#">ABOUT</a>
             <a class="text-sm text-white" href="#">PRODUCT</a>
             <a class="text-sm text-white" href="#">SERVICE</a>
-            <a class="text-sm text-white px-5 py-1 rounded-lg bg-sky-300">LOG IN / SIGN UP</a>
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('signin')}}">LOG IN</a>
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('signup')}}">SIGN UP</a>
         </div>
     </nav>
 
