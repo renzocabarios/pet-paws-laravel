@@ -40,10 +40,19 @@ Route::get('/receipt', function () {
 });
 
 
-Route::get('/checkout', function () {
-    return view('checkout');
+Route::get('/consultation', function () {
+    return view('consultation');
 });
 
+Route::get('/addpet', function () {
+    return view('addpet');
+});
+Route::get('/petprofile', function () {
+    return view('petprofile');
+});
+Route::get('/transaction', function () {
+    return view('transaction');
+});
 
 Route::middleware('authorize:Admin')->group(function () {
     Route::get('/employee', [ViewController::class, 'employee'])->name('employee');
