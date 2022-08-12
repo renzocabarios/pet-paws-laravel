@@ -11,8 +11,13 @@ class History extends Model
 
     public $table = 'histories';
 
-    public function pets()
+    public function pet()
     {
         return $this->belongsTo(Pet::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
     }
 }

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('pet_id')->unsigned();
             $table->foreign('pet_id')->references('id')->on('pets');
+            $table->integer('employee')->unsigned();
+            $table->foreign('employee')->references('id')->on('employees');
             $table->string("illness");
             $table->string("comment");
             $table->integer("fee");
