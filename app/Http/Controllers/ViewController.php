@@ -42,4 +42,8 @@ class ViewController extends Controller
         return view('consult.index');
     }
 
+    public function history()
+    {
+        return view('consult.history');
+    }
 }
