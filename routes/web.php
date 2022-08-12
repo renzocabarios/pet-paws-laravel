@@ -51,6 +51,8 @@ Route::get('/service/delete/{id}', [ServiceController::class, 'destroy'])->name(
 
 Route::get('/customer', [ViewController::class, 'customer'])->name('customer');
 Route::get('/json/customer', [CustomerController::class, 'get'])->name('customer.data');
+Route::post('/customer/import', [CustomerController::class, 'import'])->name('customer.import');
+Route::get('/customer/export', [CustomerController::class, 'export'])->name('customer.export');
 Route::get('/customer/deactivate/{id}', [CustomerController::class, 'deactivate'])->name('customer.deactivate');
 Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->name('customer.activate');
 

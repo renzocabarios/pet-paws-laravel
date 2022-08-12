@@ -9,6 +9,9 @@ use App\Models\User;
 use App\Models\Customer;
 use App\Event\CustomerCreated;
 use Yajra\Datatables\Datatables;
+use App\Imports\CustomersImport;
+use App\Exports\CustomersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
@@ -86,5 +89,16 @@ class CustomerController extends Controller
     {
         $user = auth()->user();
         return view('user.profile', ['user' => $user]);
+    }
+
+    public function import()
+    {
+        Excel::import(new CustomersImport, request()->file('file'));
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new CustomersExport, 'users.xlsx');
     }
 }

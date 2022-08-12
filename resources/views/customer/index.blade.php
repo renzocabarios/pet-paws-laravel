@@ -2,7 +2,15 @@
 @section('content')
 
 <div>
-    <a href="{{ route('service.add') }}" class="bg-sky-300 py-2 px-4 rounded-md shadow-sm text-white focus:outline-none ">Add Service</a>
+
+    <form action="{{ route('customer.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-success">Import</button>
+    </form>
+
+    <a class="btn btn-success" href="{{route('customer.export') }}">Export</a>
 
     <table id="myTable" class="drop-shadow-2xl">
         <thead>
