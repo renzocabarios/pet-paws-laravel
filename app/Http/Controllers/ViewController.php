@@ -68,4 +68,10 @@ class ViewController extends Controller
         $data = Pet::with([])->where('id', $id)->first();
         return view('pet.edit', ['data' => $data]);
     }
+
+    public function addEmployee()
+    {
+        return view('employee.add');
+    }
+
 }
