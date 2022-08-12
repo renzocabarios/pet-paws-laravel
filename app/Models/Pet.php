@@ -16,12 +16,8 @@ class Pet extends Model
         'pet_name',
         'age',
         'breed',
-        'color',
         'sex',
-    ];
-
-    protected $attributes = [
-        'img_path' => 'asd.jpg',
+        'img_path'
     ];
 
     public function customer()

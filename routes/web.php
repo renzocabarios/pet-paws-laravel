@@ -5,6 +5,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,15 @@ Route::get('/', function () {
 });
 Route::get('/profile', function () {
     return view('profile');
+});
+Route::get('/consultation', function () {
+    return view('consultation');
+});
+Route::get('/addpet', function () {
+    return view('addpet');
+});
+Route::get('/petprofile', function () {
+    return view('petprofile');
 });
 
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
@@ -45,3 +55,15 @@ Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->
 
 Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
+Route::get('/pet/add', [ViewController::class, 'addPet'])->name('pet.add');
+Route::post('/pet/store', [PetController::class, 'store'])->name('pet.store');
+
+Route::get('/pet/edit/{id}', [ViewController::class, 'editPet'])->name('pet.edit');
+Route::post('/pet/update/{id}', [PetController::class, 'update'])->name('pet.update');
+Route::get('/pet/delete/{id}', [PetController::class, 'destroy'])->name('pet.delete');
+
+
+Route::get('/pet', [ViewController::class, 'pet'])->name('pet');
+Route::get('/json/pet', [PetController::class, 'get'])->name('pet.data');
