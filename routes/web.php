@@ -5,6 +5,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\PetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,9 @@ Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->
 
 Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
+Route::get('/pet/add', [ViewController::class, 'addPet'])->name('pet.add');
+Route::post('/pet/store', [PetController::class, 'store'])->name('pet.store');
+
+

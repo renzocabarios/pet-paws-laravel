@@ -4,25 +4,28 @@
 <div class="h-full w-full flex justify-center items-center " style="background-image: url(/assets/background-try.jpg); background-size:cover; background-repeat: repeat-y">
 
     <div class="flex flex-col items-center shadow-lg shadow-gray-900 bg-white rounded-md p-12">
-        <p class="text-xl font-black">Add new pet</p>
-        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="{{route('customer.store')}}" enctype="multipart/form-data">
+        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="{{route('pet.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col">
                 <label for="pet_name">Pet Name</label>
                 <input class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" type="text" name="pet_name">
             </div>
             <div class="flex flex-col">
-                <label for="age">Pet Age</label>
+                <label for="age">Age</label>
                 <input class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" type="text" name="age">
             </div>
             <div class="flex flex-col">
                 <label for="breed">Breed</label>
                 <input class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" type="text" name="breed">
             </div>
-            <div class="flex flex-col">
-                <label for="gender">Gender</label>
-                <input class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm" type="text" name="gender">
+            <div class="flex flex-col w-full">
+                <label for="breed">Sex</label>
+                <select class="form-control m-bot15 w-full" name="sex">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
             </div>
+
             <div class="flex justify-center items-center w-full">
                 <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-30 bg-white rounded-lg border-2 border-white border-dashed cursor-pointer dark:hover:bg-white dark:bg-white hover:bg-white dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col justify-center items-center pt-5 pb-6">

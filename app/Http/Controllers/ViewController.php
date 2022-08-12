@@ -51,4 +51,8 @@ class ViewController extends Controller
     {
         return view('consult.history');
     }
+    public function addPet()
+    {
+        return view('pet.add');
+    }
 }

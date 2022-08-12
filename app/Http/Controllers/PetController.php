@@ -35,16 +35,17 @@ class PetController extends Controller
             $file->move($destinationPath, $filename);
         }
 
+        $customer = Customer::with([])->where(['user_id' => auth()->user()['id']])->first();
+
         Pet::create([
-            'customer_id' => auth()->user()['id'],
+            'customer_id' => $customer['id'],
             'pet_name' => $request->pet_name,
             'age' => (int) $request->age,
             'breed' => $request->breed,
             'sex' => $request->sex,
-            'color' => $request->color,
             'img_path' => '/images/pet/' . $filename,
         ]);
-        return redirect('/service');
+        return redirect('/');
     }
 
     public function update(Request $request, $id)

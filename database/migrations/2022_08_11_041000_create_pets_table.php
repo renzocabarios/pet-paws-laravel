@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer("age");
             $table->string("breed");
             $table->string("sex");
-            $table->string("color");
             $table->string("img_path");
             $table->timestamps();
         });
