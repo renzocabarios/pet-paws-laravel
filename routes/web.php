@@ -34,6 +34,9 @@ Route::get('/addpet', function () {
 Route::get('/petprofile', function () {
     return view('petprofile');
 });
+Route::get('/receipt', function () {
+    return view('receipt');
+});
 
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
