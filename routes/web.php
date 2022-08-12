@@ -42,3 +42,6 @@ Route::get('/customer', [ViewController::class, 'customer'])->name('customer');
 Route::get('/json/customer', [CustomerController::class, 'get'])->name('customer.data');
 Route::get('/customer/deactivate/{id}', [CustomerController::class, 'deactivate'])->name('customer.deactivate');
 Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->name('customer.activate');
+
+Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
+Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('user.update');

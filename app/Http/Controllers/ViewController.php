@@ -37,6 +37,11 @@ class ViewController extends Controller
         return view('customer.index');
     }
 
+    public function profile()
+    {
+        return view('user.profile', ['user' => auth()->user()->toArray()]);
+    }
+
     public function consult()
     {
         return view('consult.index');
