@@ -36,4 +36,10 @@ class ViewController extends Controller
     {
         return view('customer.index');
     }
+
+    public function consult()
+    {
+        return view('consult.index');
+    }
+
 }
