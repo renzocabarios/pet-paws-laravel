@@ -38,6 +38,9 @@ Route::get('/receipt', function () {
     return view('receipt');
 });
 
+Route::get('/checkout', function () {
+    return view('checkout');
+});
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
 Route::post('/signin', [UserController::class, 'authUser'])->name('user.auth');
