@@ -29,6 +29,10 @@ Route::get('/consultation', function () {
 Route::get('/addpet', function () {
     return view('addpet');
 });
+Route::get('/petprofile', function () {
+    return view('petprofile');
+});
+
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
 Route::post('/signin', [UserController::class, 'authUser'])->name('user.auth');
