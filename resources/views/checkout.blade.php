@@ -13,10 +13,11 @@
                 <label>Summer Cut</label> <span> $500</span>
             </div>
             <div class="grid font-bold grid-cols-2 gap-20">
-                <label>Winter Cut</label> <span> $500</span>
+                <label>Winter Cut</label> <span> $700</span>
             </div>
             <div class="grid font-bold grid-cols-2 gap-20">
-                <label>Halloween Cut</label> <span> $500</span>
+                <label>Halloween Cut</label> <span> $25</span>
+                <label>Total</label> <span> $1225</span>
             </div>
     <br>                
         </div>
