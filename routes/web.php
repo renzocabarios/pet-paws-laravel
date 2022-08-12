@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,6 @@ Route::get('/customer/activate/{id}', [CustomerController::class, 'activate'])->
 Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('user.update');
 
-
 Route::get('/pet/add', [ViewController::class, 'addPet'])->name('pet.add');
 Route::post('/pet/store', [PetController::class, 'store'])->name('pet.store');
 
@@ -64,6 +64,13 @@ Route::get('/pet/edit/{id}', [ViewController::class, 'editPet'])->name('pet.edit
 Route::post('/pet/update/{id}', [PetController::class, 'update'])->name('pet.update');
 Route::get('/pet/delete/{id}', [PetController::class, 'destroy'])->name('pet.delete');
 
-
 Route::get('/pet', [ViewController::class, 'pet'])->name('pet');
 Route::get('/json/pet', [PetController::class, 'get'])->name('pet.data');
+
+Route::get('/employee', [ViewController::class, 'employee'])->name('employee');
+Route::get('/employee/add', [ViewController::class, 'addEmployee'])->name('employee.add');
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+Route::get('/employee/position/{id}', [ViewController::class, 'edit_position'])->name('employee.edit_position');
+Route::post('/employee/position/{id}', [EmployeeController::class, 'change_position'])->name('employee.change_position');
+Route::get('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
+Route::get('/json/employee', [EmployeeController::class, 'get'])->name('employee.data');

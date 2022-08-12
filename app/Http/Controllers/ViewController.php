@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Pet;
+use App\Models\Employee;
 
 class ViewController extends Controller
 {
@@ -69,9 +70,19 @@ class ViewController extends Controller
         return view('pet.edit', ['data' => $data]);
     }
 
+    public function employee()
+    {
+        return view('employee.index');
+    }
+
     public function addEmployee()
     {
         return view('employee.add');
     }
 
+    public function edit_position($id)
+    {
+        $data = Employee::with(['user'])->where('id', $id)->first();
+        return view('employee.edit_position', ['data' => $data]);
+    }
 }

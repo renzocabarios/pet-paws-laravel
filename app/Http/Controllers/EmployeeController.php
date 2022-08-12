@@ -17,12 +17,11 @@ class EmployeeController extends Controller
         return Datatables::of($employees)
             ->addIndexColumn()
             ->addColumn('img', function ($row) {
-                $url = asset('images/employees/' . $row->img_path);
-                $img = '<img src=' . $url . ' alt = "I am a pic" height="50" width="50">';;
+                $img = '<img src="' . $row->user->img_path . '" alt = "I am a pic" height="50" width="50">';
                 return $img;
             })
             ->addColumn('action', function ($row) {
-                $btn = "<a href=" . route('employee.change_position', ['id' => $row->id]) . ">Change Position</a>";
+                $btn = "<a href=" . route('employee.edit_position', ['id' => $row->id]) . ">Change Position</a>";
                 $btn = $btn . "<a href=" . route('employee.delete', ['id' => $row->id]) . ">Delete</a>";
                 return $btn;
             })
