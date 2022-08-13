@@ -20,4 +20,9 @@ class Service extends Model
     protected $attributes = [
         'img_path' => 'asd.jpg',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
