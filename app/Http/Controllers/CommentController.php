@@ -9,6 +9,10 @@ class CommentController extends Controller
 {
     public function store(Request $request, $id)
     {
+        $request->validate([
+            'content' => 'required|profanity|max:255',
+        ]);
+
         Comment::create([
             'service_id' => $id,
             'name' => $request->name,
