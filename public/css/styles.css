@@ -17,3 +17,6 @@
   top: 40%;
   left: 9%;
 }
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

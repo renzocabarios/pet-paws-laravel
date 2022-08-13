@@ -37,6 +37,9 @@ Route::get('/petprofile', function () {
 Route::get('/receipt', function () {
     return view('receipt');
 });
+Route::get('/approve', function () {
+    return view('approve');
+});
 
 Route::get('/checkout', function () {
     return view('checkout');
