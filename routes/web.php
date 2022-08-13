@@ -82,3 +82,5 @@ Route::get('/employee/position/{id}', [ViewController::class, 'edit_position'])-
 Route::post('/employee/position/{id}', [EmployeeController::class, 'change_position'])->name('employee.change_position');
 Route::get('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 Route::get('/json/employee', [EmployeeController::class, 'get'])->name('employee.data');
+Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
+Route::get('/employee/export', [EmployeeController::class, 'export'])->name('employee.export');

@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Employee;
 use Yajra\Datatables\Datatables;
+use App\Imports\EmployeesImport;
+use App\Exports\EmployeesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
@@ -72,5 +75,16 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $employee->delete();
         return redirect('/employee');
+    }
+
+    public function import()
+    {
+        Excel::import(new EmployeesImport, request()->file('file'));
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new EmployeesExport, 'employees.xlsx');
     }
 }
