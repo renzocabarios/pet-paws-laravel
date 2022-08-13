@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Pet;
 use App\Models\Employee;
+use App\Models\Comment;
 
 class ViewController extends Controller
 {
@@ -84,5 +85,16 @@ class ViewController extends Controller
     {
         $data = Employee::with(['user'])->where('id', $id)->first();
         return view('employee.edit_position', ['data' => $data]);
+    }
+
+    public function comment($id)
+    {
+        $data = Comment::with([])->where('service_id', $id)->get();
+        return view('comment.index', ['data' => $data]);
+    }
+
+    public function comment_add($id)
+    {
+        return view('comment.add', ['id' => $id]);
     }
 }

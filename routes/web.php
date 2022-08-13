@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,9 +39,12 @@ Route::get('/receipt', function () {
     return view('receipt');
 });
 
+
 Route::get('/checkout', function () {
     return view('checkout');
 });
+
+
 Route::get('/signin', [ViewController::class, 'signin'])->name('signin');
 Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
 Route::post('/signin', [UserController::class, 'authUser'])->name('user.auth');
@@ -85,3 +89,7 @@ Route::get('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->nam
 Route::get('/json/employee', [EmployeeController::class, 'get'])->name('employee.data');
 Route::post('/employee/import', [EmployeeController::class, 'import'])->name('employee.import');
 Route::get('/employee/export', [EmployeeController::class, 'export'])->name('employee.export');
+
+Route::get('/service/{id}/comment', [ViewController::class, 'comment'])->name('comment');
+Route::get('/service/{id}/comment/add', [ViewController::class, 'comment_add'])->name('comment.add');
+Route::post('/service/{id}/comment/add', [CommentController::class, 'store'])->name('comment.store');
