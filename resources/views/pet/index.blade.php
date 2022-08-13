@@ -2,6 +2,14 @@
 @section('content')
 
 <div>
+    <form action="{{ route('pet.import') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" class="form-control">
+        <br>
+        <button class="btn btn-success">Import</button>
+    </form>
+
+    <a class="btn btn-success" href="{{route('pet.export') }}">Export</a>
     <table id="myTable" class="drop-shadow-2xl">
         <thead>
             <tr>

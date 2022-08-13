@@ -67,13 +67,14 @@ Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('us
 
 Route::get('/pet/add', [ViewController::class, 'addPet'])->name('pet.add');
 Route::post('/pet/store', [PetController::class, 'store'])->name('pet.store');
-
 Route::get('/pet/edit/{id}', [ViewController::class, 'editPet'])->name('pet.edit');
 Route::post('/pet/update/{id}', [PetController::class, 'update'])->name('pet.update');
 Route::get('/pet/delete/{id}', [PetController::class, 'destroy'])->name('pet.delete');
-
 Route::get('/pet', [ViewController::class, 'pet'])->name('pet');
 Route::get('/json/pet', [PetController::class, 'get'])->name('pet.data');
+Route::post('/pet/import', [PetController::class, 'import'])->name('pet.import');
+Route::get('/pet/export', [PetController::class, 'export'])->name('pet.export');
+
 
 Route::get('/employee', [ViewController::class, 'employee'])->name('employee');
 Route::get('/employee/add', [ViewController::class, 'addEmployee'])->name('employee.add');

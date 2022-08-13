@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Models\Pet;
 use App\Models\Customer;
+use App\Imports\PetsImport;
+use App\Exports\PetsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PetController extends Controller
 {
@@ -17,8 +20,7 @@ class PetController extends Controller
                 return $row->customer->user->first_name . " " . $row->customer->user->last_name;
             })
             ->addColumn('img', function ($row) {
-                $url = asset('images/pet/' . $row->img_path);
-                $img = '<img src=' . $url . ' alt = "I am a pic" height="50" width="50">';;
+                $img = '<img src=' . $row->img_path . ' alt = "I am a pic" height="50" width="50">';;
                 return $img;
             })
             ->addColumn('action', function ($row) {
@@ -77,5 +79,16 @@ class PetController extends Controller
         $pet = Pet::find($id);
         $pet->delete();
         return redirect('/pet');
+    }
+
+    public function import()
+    {
+        Excel::import(new PetsImport, request()->file('file'));
+        return back();
+    }
+
+    public function export()
+    {
+        return Excel::download(new PetsExport, 'pets.xlsx');
     }
 }
