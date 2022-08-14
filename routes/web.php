@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,6 @@ Route::get('/addpet', function () {
 });
 Route::get('/petprofile', function () {
     return view('petprofile');
-});
-Route::get('/transaction', function () {
-    return view('transaction');
 });
 
 Route::middleware('authorize:Admin')->group(function () {
@@ -118,3 +116,13 @@ Route::get('/pet/{id}/history', [ViewController::class, 'pet_history'])->name('h
 
 Route::get('/chart/pet_illness', [ViewController::class, 'pet_illness'])->name('chart.pet_illness');
 Route::get('/json/pet_illness', [ChartController::class, 'pet_illness'])->name('pet_illness.data');
+
+Route::get('/transaction', [ViewController::class, 'transaction'])->name('transaction');
+Route::get('/transaction/service/{service}', [ViewController::class, 'transaction_pet'])->name('transaction.pet');
+Route::get('/transaction/service/{service}/pet/{pet}', [TransactionController::class, 'transaction_add'])->name('transaction.add');
+Route::get('/transaction/{id}/delete', [TransactionController::class, 'transaction_delete'])->name('transaction.delete');
+Route::get('/checkout', [ViewController::class, 'checkout'])->name('checkout');
+Route::get('/transaction/add', [TransactionController::class, 'store'])->name('transaction.store');
+Route::get('/json/transaction', [TransactionController::class, 'get'])->name('transaction.data');
+Route::get('/transactions', [ViewController::class, 'transactions'])->name('transactions');
+Route::get('/transaction/{id}', [TransactionController::class, 'transaction_approve'])->name('transaction.approve');

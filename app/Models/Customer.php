@@ -24,4 +24,9 @@ class Customer extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

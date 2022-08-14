@@ -25,4 +25,9 @@ class Service extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function transaction_line()
+    {
+        return $this->belongsTo(TransactionLine::class);
+    }
 }

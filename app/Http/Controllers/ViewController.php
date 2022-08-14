@@ -7,6 +7,8 @@ use App\Models\Pet;
 use App\Models\Employee;
 use App\Models\Comment;
 use App\Models\History;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Session;
 
 class ViewController extends Controller
 {
@@ -109,5 +111,28 @@ class ViewController extends Controller
     public function pet_illness()
     {
         return view('chart.pet_illness');
+    }
+
+    public function transaction()
+    {
+        $services = Service::with([])->get()->toArray();
+        return view('transaction.index', ['services' => $services]);
+    }
+
+    public function transaction_pet($service)
+    {
+        $customer = Customer::with([])->where(['user_id' => auth()->user()['id']])->first();
+        $pets = Pet::with([])->where(['customer_id' => $customer['id']])->get()->toArray();
+        return view('transaction.pet', ['service' => $service, 'pets' => $pets]);
+    }
+
+    public function checkout()
+    {
+        return view('transaction.checkout', ['items' => Session::get('cart')]);
+    }
+
+    public function transactions()
+    {
+        return view('transactions.index');
     }
 }
