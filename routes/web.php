@@ -9,6 +9,8 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ChartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,8 +47,7 @@ Route::get('/checkout', function () {
 
 Route::middleware('authorize:Admin')->group(function () {
     Route::get('/employee', [ViewController::class, 'employee'])->name('employee');
-    Route::get('/employee/add', [ViewController::class, 'addEmployee'])->name('employee.add');
-    Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+
     Route::get('/employee/position/{id}', [ViewController::class, 'edit_position'])->name('employee.edit_position');
     Route::post('/employee/position/{id}', [EmployeeController::class, 'change_position'])->name('employee.change_position');
     Route::get('/employee/delete/{id}', [EmployeeController::class, 'destroy'])->name('employee.delete');
@@ -91,6 +92,9 @@ Route::get('/signup', [ViewController::class, 'signup'])->name('signup');
 Route::post('/signin', [UserController::class, 'authUser'])->name('user.auth');
 Route::post('/signup', [CustomerController::class, 'store'])->name('customer.store');
 
+Route::get('/employee/add', [ViewController::class, 'addEmployee'])->name('employee.add');
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+
 Route::get('/profile', [ViewController::class, 'profile'])->name('profile');
 Route::post('/profile/update/{id}', [UserController::class, 'update'])->name('user.update');
 
@@ -101,4 +105,7 @@ Route::get('/service/{id}/comment', [ViewController::class, 'comment'])->name('c
 Route::get('/service/{id}/comment/add', [ViewController::class, 'comment_add'])->name('comment.add');
 Route::post('/service/{id}/comment/add', [CommentController::class, 'store'])->name('comment.store');
 
-Route::get('pet/{id}/history', [ViewController::class, 'pet_history'])->name('history');
+Route::get('/pet/{id}/history', [ViewController::class, 'pet_history'])->name('history');
+
+Route::get('/chart/pet_illness', [ViewController::class, 'pet_illness'])->name('chart.pet_illness');
+Route::get('/json/pet_illness', [ChartController::class, 'pet_illness'])->name('pet_illness.data');

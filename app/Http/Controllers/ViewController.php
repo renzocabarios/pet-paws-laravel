@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Pet;
 use App\Models\Employee;
 use App\Models\Comment;
+use App\Models\History;
 
 class ViewController extends Controller
 {
@@ -96,5 +97,17 @@ class ViewController extends Controller
     public function comment_add($id)
     {
         return view('comment.add', ['id' => $id]);
+    }
+
+    public function pet_history($id)
+    {
+        $data = History::with(['pet.customer.user', 'employee.user'])->where('pet_id', $id)->get()->toArray();
+        $pet = $data[0]['pet']['pet_name'];
+        return view('consult.history', ['data' => $data, 'pet' =>  $pet]);
+    }
+
+    public function pet_illness()
+    {
+        return view('chart.pet_illness');
     }
 }
