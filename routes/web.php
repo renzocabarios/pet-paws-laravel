@@ -8,7 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\HistoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +26,7 @@ Route::get('/', function () {
 Route::get('/profile', function () {
     return view('profile');
 });
-Route::get('/consultation', function () {
-    return view('consultation');
-});
+
 Route::get('/addpet', function () {
     return view('addpet');
 });
@@ -93,3 +91,6 @@ Route::get('/employee/export', [EmployeeController::class, 'export'])->name('emp
 Route::get('/service/{id}/comment', [ViewController::class, 'comment'])->name('comment');
 Route::get('/service/{id}/comment/add', [ViewController::class, 'comment_add'])->name('comment.add');
 Route::post('/service/{id}/comment/add', [CommentController::class, 'store'])->name('comment.store');
+
+Route::get('pet/{id}/consult', [ViewController::class, 'consult'])->name('consult');
+Route::post('pet/{id}/consult', [HistoryController::class, 'store'])->name('consult.add');

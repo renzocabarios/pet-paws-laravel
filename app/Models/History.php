@@ -11,6 +11,14 @@ class History extends Model
 
     public $table = 'histories';
 
+    protected $fillable = [
+        'pet_id',
+        'illness',
+        'fee',
+        'employee_id',
+        'comment'
+    ];
+
     public function pet()
     {
         return $this->belongsTo(Pet::class);

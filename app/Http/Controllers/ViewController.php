@@ -45,9 +45,9 @@ class ViewController extends Controller
         return view('user.profile', ['user' => auth()->user()->toArray()]);
     }
 
-    public function consult()
+    public function consult($id)
     {
-        return view('consult.index');
+        return view('consult.index', ['id' => $id]);
     }
 
     public function history()
