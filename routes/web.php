@@ -100,3 +100,5 @@ Route::post('/pet/store', [PetController::class, 'store'])->name('pet.store');
 Route::get('/service/{id}/comment', [ViewController::class, 'comment'])->name('comment');
 Route::get('/service/{id}/comment/add', [ViewController::class, 'comment_add'])->name('comment.add');
 Route::post('/service/{id}/comment/add', [CommentController::class, 'store'])->name('comment.store');
+
+Route::get('pet/{id}/history', [ViewController::class, 'pet_history'])->name('history');

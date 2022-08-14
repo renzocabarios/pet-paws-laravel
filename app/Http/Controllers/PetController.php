@@ -26,7 +26,8 @@ class PetController extends Controller
             ->addColumn('action', function ($row) {
                 $btn = "<a href=" . route('pet.edit', ['id' => $row->id]) . ">Edit</a>";
                 $btn = $btn . "<a href=" . route('pet.delete', ['id' => $row->id]) . ">Delete</a>";
-                $btn = $btn . "<a href=" . route('consult', ['id' => $row->id]) . ">Conult Pet</a>";
+                $btn = $btn . "<a href=" . route('consult', ['id' => $row->id]) . ">Consult Pet</a>";
+                $btn = $btn . "<a href=" . route('history', ['id' => $row->id]) . ">Medical History</a>";
                 return $btn;
             })
             ->rawColumns(['owner', 'img', 'action'])
