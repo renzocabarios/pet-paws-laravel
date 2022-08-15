@@ -14,7 +14,7 @@ class PetsExport implements FromCollection
     public function collection()
     {
         return Pet::select("first_name", "last_name", "email", "pet_name", "age", "breed", "sex")
-            ->join('customers', 'customers.id', '=', 'pets.id')
+            ->join('customers', 'customers.id', '=', 'pets.customer_id')
             ->join('users', 'users.id', '=', 'customers.user_id')
             ->get();
     }
