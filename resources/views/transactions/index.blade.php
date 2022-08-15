@@ -8,6 +8,7 @@
                 <th>Id</th>
                 <th>Customer</th>
                 <th>Total</th>
+                <th>Approved</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -34,6 +35,10 @@
                 {
                     data: 'total',
                     name: 'total'
+                },
+                {
+                    data: 'approved',
+                    name: 'approved'
                 },
                 {
                     data: 'action',

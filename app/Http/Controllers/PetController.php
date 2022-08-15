@@ -20,13 +20,15 @@ class PetController extends Controller
                 return $row->customer->user->first_name . " " . $row->customer->user->last_name;
             })
             ->addColumn('img', function ($row) {
-                $img = '<img src=' . $row->img_path . ' alt = "I am a pic" height="50" width="50">';;
+                $img = '<img src=' . $row->img_path . ' alt = "I am a pic" height="50" width="50">';
                 return $img;
             })
             ->addColumn('action', function ($row) {
+                $consult = "<a href=" . route('consult', ['id' => $row->id]) . ">Consult Pet</a>";
+
                 $btn = "<a href=" . route('pet.edit', ['id' => $row->id]) . ">Edit</a>";
                 $btn = $btn . "<a href=" . route('pet.delete', ['id' => $row->id]) . ">Delete</a>";
-                $btn = $btn . "<a href=" . route('consult', ['id' => $row->id]) . ">Consult Pet</a>";
+                $btn = $btn . auth()->user()['Employee'] ? ""  : $consult;
                 $btn = $btn . "<a href=" . route('history', ['id' => $row->id]) . ">Medical History</a>";
                 return $btn;
             })

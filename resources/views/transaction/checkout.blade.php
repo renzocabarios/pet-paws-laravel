@@ -9,7 +9,7 @@
         <div class="flex flex-row bg-orange-100 p-12">
 
             <div class="flex flex-col bg-orange-100 justify-between">
-                <p>{{$key}}. </p>
+                <p>{{$key + 1}}. </p>
                 <p>Service Name: {{$item['service_name']}}</p>
                 <p>Service Price: {{$item['price']}}</p>
                 <a href="{{route('transaction.delete', ['id' => $key])}}">Delete</a>
@@ -18,7 +18,6 @@
         @endforeach
         <a href="{{route('transaction.store')}}">Confirm</a>
     </div>
-
 
 </div>
 @endsection()

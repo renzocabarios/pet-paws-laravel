@@ -14,8 +14,7 @@ class ServiceController extends Controller
         return Datatables::of(Service::with([])->get())
             ->addIndexColumn()
             ->addColumn('img', function ($row) {
-                $url = asset('images/service/' . $row->img_path);
-                $img = '<img src=' . $url . ' alt = "I am a pic" height="50" width="50">';;
+                $img = '<img src=' . $row->img_path . ' alt = "I am a pic" height="50" width="50">';;
                 return $img;
             })
             ->addColumn('action', function ($row) {

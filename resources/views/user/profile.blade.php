@@ -8,7 +8,7 @@
         <div class="text-3xl ">My<span class="text-sky-300"> Profile</span> </div>
         <br>
         <div class="grid grid-cols-2 gap-10">
-            <img class="h-80 w-80" src="/images/customers/Screenshot 2022-08-10 175104.png" alt="Customer-Profile">
+            <img class="h-80 w-80" src="{{$user['img_path']}}" alt="Customer-Profile">
             <div>
 
                 <form class="flex flex-col rounded-md" method="post" action="{{route('user.update', ['id' => $user['id']])}}" enctype="multipart/form-data">

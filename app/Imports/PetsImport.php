@@ -22,7 +22,7 @@ class PetsImport implements ToModel
 
 
         try {
-            $customer = User::with(['customer'])->where(['role' => "Customer", 'email' => $row[2]])->firstOrFail();
+            $customer = User::with([])->where(['role' => "Customer", 'email' => $row[2]])->firstOrFail();
         } catch (ModelNotFoundException $ex) {
 
             $user = User::create([

@@ -25,8 +25,7 @@ class CustomerController extends Controller
                 return $row->user->active ? "Active" : "Inactive";
             })
             ->addColumn('img', function ($row) {
-                $url = asset('images/customers/' . $row->img_path);
-                $img = '<img src=' . $url . ' alt = "I am a pic" height="50" width="50">';;
+                $img = '<img src=' . $row->img_path . ' alt = "I am a pic" height="50" width="50">';;
                 return $img;
             })
             ->addColumn('action', function ($row) {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Service;
 use Illuminate\Support\Facades\DB;
@@ -16,15 +15,20 @@ class TransactionController extends Controller
 
     public function get()
     {
-        return Datatables::of(Transaction::with(['customer.user'])->get())
+        return Datatables::of(Transaction::with(['customer.user', 'transaction_lines.service', 'transaction_lines.pet'])->get())
             ->addIndexColumn()
             ->addColumn('total', function ($row) {
-                return "500";
+                $price = 0;
+                foreach ($row->transaction_lines as $transaction_line) $price += $transaction_line->service->price;
+                return $price;
+            })
+            ->addColumn('approved', function ($row) {
+                return $row->approved ? "Approved" : "Not Approved";
             })
             ->addColumn('action', function ($row) {
                 return "<a href=" . route('transaction.approve', ['id' => $row->id]) . ">Approve</a>";
             })
-            ->rawColumns(['total', 'action'])
+            ->rawColumns(['total', 'approved', 'action'])
             ->make(true);
     }
 
@@ -39,7 +43,6 @@ class TransactionController extends Controller
 
     public function transaction_approve($id)
     {
-
         $transaction = Transaction::find($id);
         $transaction->approved = true;
         $transaction->save();
@@ -60,13 +63,15 @@ class TransactionController extends Controller
 
         try {
             DB::beginTransaction();
-
             $customer = Customer::select("id")->where(['user_id' => auth()->user()['id']])->first();
 
             $transaction = Transaction::create([
                 'customer_id' => $customer['id'],
+                'approved' => false
             ]);
+
             $cart = Session::get('cart');
+
             foreach ($cart as $item) {
                 TransactionLine::create([
                     'transaction_id' =>  $transaction->id,
@@ -74,7 +79,7 @@ class TransactionController extends Controller
                     'pet_id' => $item['pet'],
                 ]);
             }
-
+            $cart = Session::put('cart', []);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CustomersImport implements ToModel
 {
@@ -17,17 +18,22 @@ class CustomersImport implements ToModel
     public function model(array $row)
     {
 
-        $user = User::create([
-            'first_name' => $row[0],
-            'last_name' => $row[1],
-            'email' => $row[2],
-            'password' => Hash::make("asd"),
-            'role' => 'Customer',
-            'img_path' => '/assets/background-image-customer-employee.png',
-        ]);
+        try {
+            $customer = User::with([])->where(['role' => "Customer", 'email' => $row[2]])->firstOrFail();
+        } catch (ModelNotFoundException $ex) {
 
-        return new Customer([
-            'user_id' => $user->id,
-        ]);
+            $user = User::create([
+                'first_name' => $row[0],
+                'last_name' => $row[1],
+                'email' => $row[2],
+                'password' => Hash::make("asd"),
+                'role' => 'Customer',
+                'img_path' => '/assets/background-image-customer-employee.png',
+            ]);
+
+            return new Customer([
+                'user_id' => $user->id,
+            ]);
+        }
     }
 }

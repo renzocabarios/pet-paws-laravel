@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Comment;
 use App\Models\History;
 use App\Models\Customer;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Session;
 
 class ViewController extends Controller
@@ -133,6 +134,24 @@ class ViewController extends Controller
 
     public function transactions()
     {
+
         return view('transactions.index');
+    }
+
+    public function admin_add()
+    {
+        return view('admin.add');
+    }
+
+    public function transaction_history($id)
+    {
+        $transactions = Transaction::with(['customer'])->where(['customer.id' => $id])->get()->toArray();
+        return view('transaction_history',);
+    }
+
+    public function services()
+    {
+        $services = Service::with([])->get()->toArray();
+        return view('services', ['services' => $services]);
     }
 }

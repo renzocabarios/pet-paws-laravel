@@ -9,15 +9,13 @@
         <img src="{{$service['img_path']}}" width="150" alt="service">
         <span>{{$service['service_name']}}</span><br>
         <Span>PHP {{$service['price']}}</Span>
-        <div class="justify-end">
-            <a href="{{route('comment', ['id' => $service['id']])}}" class="bg-lime-500 h-10 w-full py-1 px-2 rounded-full text-white">View Comment</a>
-        </div>
+
         <br>
         <div class="justify-end">
-            <a href="{{route('transaction.pet', ['service' => $service['id']])}}" class="bg-sky-300 h-10 w-full py-1 px-2 rounded-full text-white">Add Services</a>
+            <a href="{{route('comment.add', ['id' => $service['id']])}}" class="bg-sky-300 h-10 w-full py-1 px-2 rounded-full text-white ">Add Comment</a>
         </div>
     </div>
     @endforeach
-    <a href="{{route('checkout')}}">Checkout Cart</a>
+
 </div>
 @endsection()

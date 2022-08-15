@@ -15,12 +15,44 @@
     <nav class="nav drop-shadow-2xl bg-sky-300 flex flex-row justify-between items-center p-5">
         <div class="text-3xl">Pet <span class="text-white">Paws</span> </div>
         <div class="flex flex-row justify-between items-center gap-5">
-            <a class="text-sm text-white" href="#">HOME</a>
-            <a class="text-sm text-white" href="#">ABOUT</a>
-            <a class="text-sm text-white" href="#">PRODUCT</a>
-            <a class="text-sm text-white" href="#">SERVICE</a>
+            <a class="text-sm text-white" href="/">HOME</a>
+            <a class="text-sm text-white" href="{{route('chart.pet_illness')}}">PET ILLNESS CHART</a>
+            @if(auth()->check())
+
+            @if(auth()->user()['role'] == 'Customer')
+            <a class="text-sm text-white" href="{{route('pet.add')}}">ADD PET</a>
+            <a class="text-sm text-white" href="{{route('transaction')}}">STORE</a>
+            <a class="text-sm text-white" href="{{route('profile')}}">PROFILE</a>
+            @endif
+
+            @if(auth()->user()['role'] == 'Employee')
+            <a class="text-sm text-white" href="{{route('pet')}}">PET</a>
+            <a class="text-sm text-white" href="{{route('service')}}">SERVICE</a>
+            <a class="text-sm text-white" href="{{route('transactions')}}">TRANSACTIONS</a>
+            @endif
+
+            @if(auth()->user()['role'] == 'Admin')
+            <a class="text-sm text-white" href="{{route('pet')}}">PET</a>
+            <a class="text-sm text-white" href="{{route('customer')}}">CUSTOMER</a>
+            <a class="text-sm text-white" href="{{route('service')}}">SERVICE</a>
+            <a class="text-sm text-white" href="{{route('transactions')}}">TRANSACTIONS</a>
+            @endif
+
+            @endif
+
+            @if(!auth()->check())
+
+            <a class="text-sm text-white" href="{{route('services')}}">SERVICES</a>
+
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('admin.add')}}">SIGN UP AS ADMIN</a>
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('employee.add')}}">SIGN UP AS EMPLOYEE</a>
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('signup')}}">SIGN UP AS CUSTOMER</a>
             <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('signin')}}">LOG IN</a>
-            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('signup')}}">SIGN UP</a>
+
+            @else
+            <a class="text-sm bg-white text-sky-300 px-5 py-1 rounded-lg" href="{{route('user.logout')}}">LOG OUT</a>
+            @endif
+
         </div>
     </nav>
 

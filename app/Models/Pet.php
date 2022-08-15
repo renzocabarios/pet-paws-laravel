@@ -32,6 +32,6 @@ class Pet extends Model
 
     public function transaction_line()
     {
-        return $this->belongsTo(TransactionLine::class);
+        return $this->hasOne(TransactionLine::class);
     }
 }

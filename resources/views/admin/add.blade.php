@@ -4,8 +4,8 @@
 <div class="h-full w-full flex justify-center items-center " style="background-image: url(/assets/background-try.jpg); background-size:cover; background-repeat: repeat-y">
 
     <div class="flex flex-col items-center shadow-lg shadow-gray-900 bg-white rounded-md p-12">
-        <p class="text-xl font-black">Join as Staff</p>
-        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="{{route('employee.store')}}" enctype="multipart/form-data">
+        <p class="text-xl font-black">Join as Admin</p>
+        <form class="flex flex-col items-center rounded-md gap-2" method="post" action="{{route('admin.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-col">
                 <label for="first_name">First Name</label>
