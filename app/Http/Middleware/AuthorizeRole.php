@@ -17,13 +17,10 @@ class AuthorizeRole
     public function handle(Request $request, Closure $next, ...$roles)
     {
         if (!auth()->check()) return redirect('/');
+        foreach ($roles as $role) {
+            if (auth()->user()['role'] === $role) return  $next($request);
+        }
 
-        // foreach ($roles as $role) {
-        //     dd(auth()->user()['role'], $role);
-
-        //     if (auth()->user()['role'] == $role) return $next($request);
-        // }
-
-        return $next($request);
+        return redirect('/');
     }
 }

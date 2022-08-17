@@ -19,19 +19,19 @@
             <a class="text-sm text-white" href="{{route('chart.pet_illness')}}">PET ILLNESS CHART</a>
             @if(auth()->check())
 
-            @if(auth()->user()['role'] == 'Customer')
+            @if(auth()->user()['role'] === 'Customer')
             <a class="text-sm text-white" href="{{route('pet.add')}}">ADD PET</a>
             <a class="text-sm text-white" href="{{route('transaction')}}">STORE</a>
             <a class="text-sm text-white" href="{{route('profile')}}">PROFILE</a>
             @endif
 
-            @if(auth()->user()['role'] == 'Employee')
+            @if(auth()->user()['role'] === 'Employee')
             <a class="text-sm text-white" href="{{route('pet')}}">PET</a>
             <a class="text-sm text-white" href="{{route('service')}}">SERVICE</a>
             <a class="text-sm text-white" href="{{route('transactions')}}">TRANSACTIONS</a>
             @endif
 
-            @if(auth()->user()['role'] == 'Admin')
+            @if(auth()->user()['role'] === 'Admin')
             <a class="text-sm text-white" href="{{route('pet')}}">PET</a>
             <a class="text-sm text-white" href="{{route('customer')}}">CUSTOMER</a>
             <a class="text-sm text-white" href="{{route('service')}}">SERVICE</a>

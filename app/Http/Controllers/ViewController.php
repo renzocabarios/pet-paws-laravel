@@ -63,6 +63,7 @@ class ViewController extends Controller
 
     public function pet()
     {
+
         return view('pet.index');
     }
 
