@@ -135,3 +135,7 @@ Route::post('/service/{id}/comment/add', [CommentController::class, 'store'])->n
 
 Route::get('/chart/pet_illness', [ViewController::class, 'pet_illness'])->name('chart.pet_illness');
 Route::get('/json/pet_illness', [ChartController::class, 'pet_illness'])->name('pet_illness.data');
+
+
+Route::get('/receipt/{id}', [ViewController::class, 'receipt'])->name('receipt');
+Route::get('/receipt/{id}/download', [TransactionController::class, 'receipt'])->name('receipt.download');

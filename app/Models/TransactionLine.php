@@ -19,10 +19,6 @@ class TransactionLine extends Model
 
     protected $attributes = [];
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }
 
     public function transaction()
     {

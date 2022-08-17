@@ -9,7 +9,9 @@ use App\Models\Comment;
 use App\Models\History;
 use App\Models\Customer;
 use App\Models\Transaction;
+use App\Models\TransactionLine;
 use Illuminate\Support\Facades\Session;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ViewController extends Controller
 {
@@ -153,5 +155,11 @@ class ViewController extends Controller
     {
         $services = Service::with([])->get()->toArray();
         return view('services', ['services' => $services]);
+    }
+
+    public function receipt($id)
+    {
+        $transactions = TransactionLine::with(['service', 'pet'])->where('transaction_id', $id)->get()->toArray();
+        return view('transaction.receipt', ['data' => $transactions, 'id' => $id]);
     }
 }

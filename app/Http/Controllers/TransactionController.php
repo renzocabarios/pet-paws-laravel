@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Transaction;
 use App\Models\TransactionLine;
 use App\Models\Customer;
+use App\Models\Pet;
 use Yajra\Datatables\Datatables;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransactionController extends Controller
 {
@@ -35,8 +37,9 @@ class TransactionController extends Controller
     public function transaction_add($service, $pet)
     {
         $temp_service = Service::select("service_name", "price")->where('id', $service)->first();
+        $temp_pet = Pet::select("pet_name")->where('id', $pet)->first();
         if (Session::get('cart') == null) Session::put('cart', []);
-        Session::push('cart', ['service' => $service, 'service_name' => $temp_service['service_name'], 'price' => $temp_service['price'], 'pet' => $pet]);
+        Session::push('cart', ['service' => $service, 'service_name' => $temp_service['service_name'], 'price' => $temp_service['price'], 'pet' => $pet, 'pet_name' => $temp_pet['pet_name']]);
         Session::save();
         return redirect('/transaction');
     }
@@ -61,6 +64,7 @@ class TransactionController extends Controller
     public function store()
     {
 
+
         try {
             DB::beginTransaction();
             $customer = Customer::select("id")->where(['user_id' => auth()->user()['id']])->first();
@@ -79,12 +83,23 @@ class TransactionController extends Controller
                     'pet_id' => $item['pet'],
                 ]);
             }
-            $cart = Session::put('cart', []);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
         }
 
-        return redirect('/');
+
+        $cart = Session::put('cart', []);
+        return route('receipt', ['id' => $transaction->id]);
+    }
+
+    public function receipt($id)
+    {
+        $tlines = TransactionLine::with(['service', 'pet'])->where('transaction_id', $id)->get()->toArray();
+        $data = [
+            'datas' => $tlines,
+        ];
+        $pdf = PDF::loadView('pdf.receipt', $data);
+        return $pdf->download('receipt.pdf');
     }
 }
